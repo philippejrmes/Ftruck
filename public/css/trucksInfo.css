@@ -1,0 +1,43 @@
+#truckIntroPhoto{background-position:center;background-repeat:no-repeat;background-size:cover;height:300px;line-height:300px;text-align:center;width:100%;}
+#truckIntroPhoto h1{color:#FFF;font-size:180%;}
+
+main{height:auto !important;height:calc(100% - 90px);min-height:calc(100% - 90px);width:100%;}
+#content{background-color:#FFF;margin:0 auto;margin-bottom:20px;margin-top:20px;padding:50px;width:calc(90% - 100px);}
+#content:after{clear:both;content:"";display:table;}
+.splitScreen{float:left;margin:0 20px;width:calc(50% - 40px);}
+.splitScreen h2{font-size:150%;}
+.splitScreen h3{font-size:130%;}
+.splitScreen p{height:auto !important;height:50px;margin-bottom:20px;min-height:50px;}
+
+.truckCategoryList{margin-bottom:20px;}
+.truckCategoryList:after{content:"";clear:both;display:table;}
+.truckCategoryList a{background-color:#e84e41;color:#FFF;display:block;float:left;margin-right:5px;padding:5px 10px;text-decoration:none;}
+.truckCategoryList a:hover{text-decoration:underline;}
+
+.listBlock{border:1px solid #DDD;box-sizing:border-box;margin-bottom:20px;}
+.listBlock h3{background-color:#DDD;height:50px;line-height:50px;text-align:center;}
+.listBlock ul li{height:30px;line-height:30px;text-align:center;}
+.listBlock ul li:nth-child(even){background-color:#EEE;}
+
+
+#bookNow{background-color:#e84e41;color:#FFF;height:50px;line-height:50px;margin:0 auto;margin-top:50px;text-align:center;width:calc(100% - 20px);}
+#bookNow:hover{cursor:pointer;text-decoration:underline;}
+
+
+#splitScreenWrapper:after{clear:both;content:"";display:table;}
+#photSlider{height:auto !important;height:150px;margin-top:50px;min-height:150px;}
+#photSlider:after{clear:both;content:"";display:table;}
+#photSlider img{float:left;height:200px;margin:10px;object-fit:cover;width:calc((100% / 6) - 20px);}
+
+@media only screen and (max-width:1200px){
+	.splitScreen{margin:0 0 20px 0;width:100%;}
+	#photSlider img{float:left;height:150;width:calc((100% / 3) - 20px);}
+}
+
+@media only screen and (max-width:800px){
+    #photSlider img{float:left;height:200;width:calc(50% - 20px);}
+}
+@media only screen and (max-width:500px){
+    #bookNow{width:100%;}
+    #photSlider img{height:250px;margin:0;margin-bottom:10px;width:100%;}
+}

@@ -1,0 +1,6 @@
+#pageInfo{margin:50px 0;}
+#pageInfo h2{font-size:180%;text-align:center;}
+#pageInfo p{font-size:100%;text-align:center;}
+
+#generalInfo{background-color:#FFF;margin:0 auto;margin-bottom:20px;margin-top:20px;padding:50px;width:calc(90% - 100px);}
+.generalInfoBlock{margin:20px 0;}

@@ -1,0 +1,58 @@
+*{border:0;list-style-type:none;margin:0;outline:none;padding:0;}
+html{height:100%;}
+body{background-color:#EEE;font-family:Poppins, arial;font-size:85%;height:100%;}
+
+input{border-radius:0;-webkit-appearance:none;}
+
+nav{background-color:#FFF;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:90px;position:fixed;width:100%;z-index:1000;}
+.innerNav{display:table;margin:0 auto;}
+.innerNav:after{clear:both;content:"";display:table;}
+.innerNav a{color:#333;display:block;float:left;height:100%;line-height:90px;padding:0 20px;text-decoration:none;}
+.innerNav a#active{background-color:#e84e41;color:#FFF;text-decoration:underline;}
+.innerNav a:not(#logo):not(#active):hover{text-decoration:underline;}
+#navMobile{display:none;}
+
+main{padding-top:90px;}
+#foodtruckIntroPhoto{background-image:url('../layout/foodtruck.jpeg');background-position:center;background-repeat:no-repeat;background-size:cover;height:300px;line-height:300px;text-align:center;width:100%;}
+#foodtruckIntroPhoto h1{color:#FFF;font-size:180%;}
+
+#advancedSearchBoxWrapper{background-color:rgba(0,0,0,0.9);display:none;height:100%;position:fixed;width:100%;z-index:1001;}
+#advancedSearchBoxPlacer{background-color:#FFF;height:90%;left:calc(50% - 45%);position:absolute;top:calc(50% - 45%);width:90%;}
+#selectionMenuPlacer{height:150px;left:calc(50% - 150px);position:absolute;top:calc(50% - 75px);width:300px;}
+.dropdownHolder{margin-bottom:10px;width:100%;}
+.dropdownHeader{border:1px solid #CCC;box-sizing:border-box;height:40px;line-height:40px;text-align:center;width:100%;}
+#searchBox{background-color:#FFF;height:150px;position:relative;width:100%;} /*Same as #contactUs*/
+#searchFieldHolder{height:50px;left:calc(50% - 45%);position:absolute;top:calc(50% - 25px);text-align:center;width:90%;}
+#searchFieldHolder #advancedSearchBtn{background-color:#333;color:#FFF;float:left;height:100%;line-height:50px;text-align:center;width:50px;}
+#searchFieldHolder #advancedSearchBtn:hover{background-color:#e84e41;cursor:pointer;}
+#searchFieldHolder input{border-width:1px 0 1px 1px;border-color:#CCC;border-style:solid;box-sizing:border-box;display:block;float:left;font-size:100%;height:50px;text-align:center;width:calc(100% - 100px);}
+#searchFieldHolder #searchBtn{background-color:#333;color:#FFF;float:left;height:100%;line-height:50px;text-align:center;width:50px;}
+#searchFieldHolder #searchBtn:hover{background-color:#e84e41;cursor:pointer;}
+
+footer{background-color:#222;color:#FFF;height:auto !important;height:150px;min-height:150px;padding-top:10px;text-align:center;width:100%;}
+#social i{font-size:180%;height:30px;line-height:30px;width:30px;}
+#social i:hover{background-color:#e84e41;cursor:pointer;}
+
+#floorNav{padding:20px 0;}
+#floorNav a{color:#FFF;font-size:85%;text-decoration:none;}
+#floorNav a#floorNavActive{text-decoration:underline;}
+#floorNav a:hover{text-decoration:underline;}
+
+p#infoBlock{font-size:85%;margin:0 auto;padding-bottom:50px;width:90%;}
+
+
+@media only screen and (max-width:800px){
+	#nav{display:none;}
+	#navMobile{display:block;}
+	#navMobileTop a{display:block;float:right;height:90px;width:30px;}
+	#navMobileTop img{margin:0 auto;left:calc(50% - 65px);position:absolute;width:130px;z-index:1001;}
+	#dropdownMenu{display:none;padding-top:90px;}
+	#dropdownMenu a{background-color:#FFF;}
+	.dropdownMenuActive{display:block !important;}
+	.innerNav{display:block;width:100%;}
+	.innerNav a{width:100%;}
+	#foodtruckIntroPhoto h1{font-size:140%;}
+}
+@media only screen and (max-width:500px){
+	#foodtruckIntroPhoto h1{font-size:70%;}
+}

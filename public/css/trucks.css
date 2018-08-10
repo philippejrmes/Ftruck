@@ -1,0 +1,25 @@
+.foodTruckContainer{margin-top:20px;}
+.foodTruckContainer:after{clear:both;content:"";display:table;}
+.foodTruckBox{float:left;display:block;height:300px;margin:0 10px 20px 10px;overflow:hidden;position:relative;width:calc((100% / 5) - 20px);}
+.foodTruckBox img{height:300px;object-fit:cover;position:absolute;width:100%;z-index:998;}
+.foodTruckBoxInfo{background-color:rgba(232,78,65,0.9);color:#FFF;display:none;height:100%;position:absolute;text-align:center;width:100%;z-index:999;}
+.foodTruckBoxInfo:hover{cursor:pointer;}
+.foodTruckBoxInfoBlock{height:100px;left:calc(50% - 50%);position:absolute;top:calc(50% - 50px);width:100%;}
+.foodTruckBoxInfoBlock h2{height:50px;line-height:50px;}
+.foodTruckBoxInfoBlock p{height:50px;}
+
+#contactUs{background-color:#FFF;height:150px;position:relative;width:100%;}
+#contactUsButton{background-color:#e84e41;color:#FFF;height:50px;line-height:50px;left:calc(50% - 45%);position:absolute;top:calc(50% - 25px);text-align:center;width:90%;}
+#contactUsButton:hover{cursor:pointer;text-decoration:underline;}
+
+@media only screen and (max-width:1200px){
+	.foodTruckBox{width:calc((100% / 3) - 20px);}
+}
+
+@media only screen and (max-width:800px){
+	.foodTruckBox{width:calc((100% / 2) - 20px);}
+}
+
+@media only screen and (max-width:500px){
+	.foodTruckBox{width:calc(100% - 20px);}
+}
