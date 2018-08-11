@@ -3,7 +3,7 @@
     include_once('private/config/Mysql.php');
     
     $database = new Database();
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY id DESC LIMIT 10');
+    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY idtruck DESC LIMIT 10');
     $rows = $database->resultset();
     
     $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY RAND() LIMIT 10');
@@ -14,7 +14,10 @@
 	<head>
 		<title>FoodTruck website - Vind een FoodTruck</title>
 		<!--METADATA-->
-		<base href="http://swiido.com/ftruck/">
+		<?php 
+			$baseUrl = BASE_URL;
+			echo "<base href=\"$baseUrl\">";
+		?>
 	    <meta charset="UTF-8">
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>

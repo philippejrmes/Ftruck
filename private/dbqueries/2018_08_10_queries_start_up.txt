@@ -1,0 +1,175 @@
+﻿CREATE TABLE `foodtruckdatabase`.`country` (
+  `idcountry` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL);
+
+INSERT INTO foodtruckdatabase.country (name) VALUES ('België'),('Nederland');
+
+CREATE TABLE `foodtruckdatabase`.`region` (
+  `idregion` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `countryid` INT NOT NULL);
+  
+CREATE INDEX `idk_fk_region_countryid` 
+ON `foodtruckdatabase`.`region` (`countryid` ASC);
+
+ALTER TABLE region
+ADD CONSTRAINT fk_region_countryid
+FOREIGN KEY (countryid) REFERENCES country(idcountry);
+
+INSERT INTO `foodtruckdatabase`.`region`
+(`name`,`countryid`)
+VALUES
+("Antwerpen", 1),
+("Vlaams-Brabant", 1); 
+  
+CREATE TABLE `foodtruckdatabase`.`postalcode` (
+  `idpostalcode` INT AUTO_INCREMENT PRIMARY KEY,
+  `code` VARCHAR(10) NOT NULL,
+  `regionid` INT NOT NULL);
+  
+CREATE INDEX `idk_fk_postalcode_regionid` 
+ON `foodtruckdatabase`.`postalcode` (`regionid` ASC);
+
+ALTER TABLE postalcode
+ADD CONSTRAINT fk_postalcode_regionid
+FOREIGN KEY (regionid) REFERENCES region(idregion);
+
+INSERT INTO `foodtruckdatabase`.`postalcode`
+(`code`, `regionid`)
+VALUES
+("1000", 2),
+("2000", 1); 
+
+CREATE TABLE `foodtruckdatabase`.`municipality` (
+  `idmunicipality` INT AUTO_INCREMENT PRIMARY KEY,
+  `namenl` VARCHAR(200) NOT NULL,
+  `namefr` VARCHAR(200) NULL,
+  `postalcodeid` INT NOT NULL);
+ 
+CREATE INDEX `idk_fk_municipality_postalcodeid` 
+ON `foodtruckdatabase`.`municipality` (`postalcodeid` ASC);
+ 
+ALTER TABLE municipality
+ADD CONSTRAINT fk_municipality_postalcodeid
+FOREIGN KEY (postalcodeid) REFERENCES postalcode(idpostalcode);
+
+INSERT INTO `foodtruckdatabase`.`municipality`
+(`namenl`, `namefr`, `postalcodeid`)
+VALUES
+("Antwerpen", "Anvers", 2),
+("Brussel", "Bruxelles", 1); 
+	
+CREATE TABLE `foodtruckdatabase`.`truck` (
+  `idtruck` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `municipalityid` INT NOT NULL,
+  `smalldescription` VARCHAR(400) NULL,
+  `largedescription` MEDIUMTEXT NULL,
+  `imageName` VARCHAR(200) NULL?
+  `oneliner` VARCHAR(140) NULL,
+  `menutext` MEDIUMTEXT NULL,
+  `menudocument` VARCHAR(200) NULL,
+  `mileagecost` DOUBLE NULL,
+  `basiccost` DOUBLE NULL,
+  `requiredutilities` VARCHAR(500) NULL,
+  `email` VARCHAR(100) NULL,
+  `phone` VARCHAR(30) NULL,
+  `website` VARCHAR(200) NULL,
+  `facebook` VARCHAR(200) NULL,
+  `instagram` VARCHAR(200) NULL,
+  `twitter` VARCHAR(200) NULL,
+  `maxmileage` DOUBLE NULL);
+  
+CREATE INDEX `idk_fk_truck_municipalityid` 
+ON `foodtruckdatabase`.`truck` (`municipalityid` ASC);
+
+ALTER TABLE truck
+ADD CONSTRAINT fk_truck_municipalityid
+FOREIGN KEY (municipalityid) REFERENCES municipality(idmunicipality);
+
+INSERT INTO `foodtruckdatabase`.`truck`
+(`name`, `municipalityid`, `imageName`)
+VALUES
+("AntwerpTruck1", 1, "sateboss.jpg"),
+("BrusselTruck1", 2, "sateboss.jpg"),
+("AntwerpTruck2", 1, "sateboss.jpg"),
+("BrusselTruck2", 2, "sateboss.jpg"),
+("AntwerpTruck3", 1, "sateboss.jpg"),
+("BrusselTruck3", 2, "sateboss.jpg");
+
+CREATE TABLE `foodtruckdatabase`.`truckcategories` (
+  `idtruckcategories` INT AUTO_INCREMENT PRIMARY KEY,
+  `categoryid` INT NOT NULL,
+  `truckid` INT NOT NULL);
+  
+CREATE INDEX `idk_fk_truckcategories_truckid` 
+ON `foodtruckdatabase`.`truckcategories` (`truckid` ASC);
+  
+CREATE INDEX `idk_fk_truckcategories_categoryid` 
+ON `foodtruckdatabase`.`truckcategories` (`categoryid` ASC);
+
+ALTER TABLE truckcategories
+ADD CONSTRAINT fk_truckcategories_truckid
+FOREIGN KEY (truckid) REFERENCES truck(idtruck);
+
+ALTER TABLE truckcategories
+ADD CONSTRAINT fk_truckcategories_categoryid
+FOREIGN KEY (categoryid) REFERENCES category(idcategory);
+
+INSERT INTO `foodtruckdatabase`.`truckcategories`
+(`truckid`,`categoryid`) VALUES
+(1,1),
+(1,2),
+(2,3),
+(3,3),
+(4,4),
+(5,5),
+(5,6),
+(6,2);
+
+CREATE TABLE `foodtruckdatabase`.`category` (
+  `idcategory` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(200) NOT NULL,
+  `description` MEDIUMTEXT NOT NULL);
+
+INSERT INTO `foodtruckdatabase`.`category`
+(`Name`)
+VALUES
+("Amerikaans"),
+("Aziatisch"),
+("Bbq"),
+("Biologisch"),
+("Broodjes"),
+("Drank"),
+("Fingerfood"),
+("Flex"),
+("Frituur"),
+("Fruit"),
+("Fusion"),
+("Hamburger"),
+("Ijs"),
+("Koffie"),
+("Mexicaans"),
+("Ontbijt"),
+("Pannekoeken"),
+("Pasta"),
+("Pizza"),
+("Juices"),
+("Soep"),
+("Tapas"),
+("Vegetarisch"),
+("Vis"),
+("Vlees"),
+("Wafels"),
+("Worst"),
+("Sweets");
+
+CREATE TABLE `foodtruckdatabase`.`users`
+(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `first_name` VARCHAR(50) NOT NULL,
+     `last_name` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `hash` VARCHAR(32) NOT NULL,
+    `active` BOOL NOT NULL DEFAULT 0);

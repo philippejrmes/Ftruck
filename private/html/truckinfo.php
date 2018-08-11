@@ -13,7 +13,10 @@
 	<head>
 		<title>FoodTruck website - More info about the current truck</title>
 		<!--METADATA-->
-		<base href="http://swiido.com/ftruck/">
+		<?php 
+			$baseUrl = BASE_URL;
+			echo "<base href=\"$baseUrl\">";
+		?>
 	    <meta charset="UTF-8">
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
