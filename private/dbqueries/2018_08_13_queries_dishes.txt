@@ -1,0 +1,60 @@
+﻿CREATE TABLE `foodtruckdatabase`.`menu` (
+  `idmenu` INT AUTO_INCREMENT PRIMARY KEY,
+  `menutext` MEDIUMTEXT NULL,
+  `menudocument` VARCHAR(200) NULL,
+  `dishes` MEDIUMTEXT NULL,
+  `truckid` INT NOT NULL);
+  
+CREATE INDEX `idk_fk_menu_truckid` 
+ON `foodtruckdatabase`.`menu` (`truckid` ASC);
+
+ALTER TABLE menu
+ADD CONSTRAINT fk_menu_truckid
+FOREIGN KEY (truckid) REFERENCES truck(idtruck);
+
+ALTER TABLE truck DROP COLUMN menutext;
+
+ALTER TABLE truck DROP COLUMN menudocument;
+
+INSERT INTO `foodtruckdatabase`.`menu`
+(`menutext`, `menudocument`, `dishes`, `truckid`) VALUES 
+("ons lekker menu, kijk en kwijl weg", "url", "macaroni|pasta pesto", 1),
+("pure vlaamse kost met liefde gemaakt", "menudocument url", "stoverij|worst met rode kool", 2);
+
+CREATE TABLE `foodtruckdatabase`.`statistic` (
+  `idstatistic` INT AUTO_INCREMENT PRIMARY KEY,
+  `truckvisited` INT NOT NULL DEFAULT 0,
+  `truckbooked` INT NOT NULL DEFAULT 0,
+  `truckid` INT NOT NULL);
+  
+CREATE INDEX `idk_fk_statistic_truckid` 
+ON `foodtruckdatabase`.`statistic` (`truckid` ASC);
+
+ALTER TABLE statistic
+ADD CONSTRAINT fk_statistic_truckid
+FOREIGN KEY (truckid) REFERENCES truck(idtruck);
+
+CREATE TABLE `foodtruckdatabase`.`user`
+(
+    `iduser` INT AUTO_INCREMENT PRIMARY KEY,
+    `first_name` VARCHAR(50) NOT NULL,
+    `last_name` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `hash` VARCHAR(32) NOT NULL,
+    `active` BOOL NOT NULL DEFAULT 0);
+
+INSERT INTO `foodtruckdatabase`.`user`
+(`first_name`, `last_name`, `email`, `password`, `hash`)
+VALUES
+("jelle", "test", "test@test.com", "123", "hash");
+
+ALTER TABLE truck
+ADD COLUMN ownerid INT NOT NULL DEFAULT 1;
+
+CREATE INDEX `idk_fk_truck_ownerid`
+ON `foodtruckdatabase`.`truck` (`ownerid`);
+
+ALTER TABLE truck
+ADD CONSTRAINT fk_truck_ownerid
+FOREIGN KEY (ownerid) REFERENCES user(iduser);
