@@ -1,4 +1,6 @@
-﻿CREATE TABLE `foodtruckdatabase`.`country` (
+﻿CREATE DATABASE foodtruckdatabase;
+
+CREATE TABLE `foodtruckdatabase`.`country` (
   `idcountry` INT AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(100) NOT NULL);
 
@@ -12,7 +14,7 @@ CREATE TABLE `foodtruckdatabase`.`region` (
 CREATE INDEX `idk_fk_region_countryid` 
 ON `foodtruckdatabase`.`region` (`countryid` ASC);
 
-ALTER TABLE region
+ALTER TABLE `foodtruckdatabase`.`region`
 ADD CONSTRAINT fk_region_countryid
 FOREIGN KEY (countryid) REFERENCES country(idcountry);
 
@@ -30,7 +32,7 @@ CREATE TABLE `foodtruckdatabase`.`postalcode` (
 CREATE INDEX `idk_fk_postalcode_regionid` 
 ON `foodtruckdatabase`.`postalcode` (`regionid` ASC);
 
-ALTER TABLE postalcode
+ALTER TABLE `foodtruckdatabase`.`postalcode`
 ADD CONSTRAINT fk_postalcode_regionid
 FOREIGN KEY (regionid) REFERENCES region(idregion);
 
@@ -49,7 +51,7 @@ CREATE TABLE `foodtruckdatabase`.`municipality` (
 CREATE INDEX `idk_fk_municipality_postalcodeid` 
 ON `foodtruckdatabase`.`municipality` (`postalcodeid` ASC);
  
-ALTER TABLE municipality
+ALTER TABLE `foodtruckdatabase`.`municipality`
 ADD CONSTRAINT fk_municipality_postalcodeid
 FOREIGN KEY (postalcodeid) REFERENCES postalcode(idpostalcode);
 
@@ -65,7 +67,7 @@ CREATE TABLE `foodtruckdatabase`.`truck` (
   `municipalityid` INT NOT NULL,
   `smalldescription` VARCHAR(400) NULL,
   `largedescription` MEDIUMTEXT NULL,
-  `imageName` VARCHAR(200) NULL?
+  `imageName` VARCHAR(200) NULL,
   `oneliner` VARCHAR(140) NULL,
   `menutext` MEDIUMTEXT NULL,
   `menudocument` VARCHAR(200) NULL,
@@ -83,7 +85,7 @@ CREATE TABLE `foodtruckdatabase`.`truck` (
 CREATE INDEX `idk_fk_truck_municipalityid` 
 ON `foodtruckdatabase`.`truck` (`municipalityid` ASC);
 
-ALTER TABLE truck
+ALTER TABLE `foodtruckdatabase`.`truck`
 ADD CONSTRAINT fk_truck_municipalityid
 FOREIGN KEY (municipalityid) REFERENCES municipality(idmunicipality);
 
@@ -108,24 +110,9 @@ ON `foodtruckdatabase`.`truckcategories` (`truckid` ASC);
 CREATE INDEX `idk_fk_truckcategories_categoryid` 
 ON `foodtruckdatabase`.`truckcategories` (`categoryid` ASC);
 
-ALTER TABLE truckcategories
+ALTER TABLE `foodtruckdatabase`.`truckcategories`
 ADD CONSTRAINT fk_truckcategories_truckid
 FOREIGN KEY (truckid) REFERENCES truck(idtruck);
-
-ALTER TABLE truckcategories
-ADD CONSTRAINT fk_truckcategories_categoryid
-FOREIGN KEY (categoryid) REFERENCES category(idcategory);
-
-INSERT INTO `foodtruckdatabase`.`truckcategories`
-(`truckid`,`categoryid`) VALUES
-(1,1),
-(1,2),
-(2,3),
-(3,3),
-(4,4),
-(5,5),
-(5,6),
-(6,2);
 
 CREATE TABLE `foodtruckdatabase`.`category` (
   `idcategory` INT AUTO_INCREMENT PRIMARY KEY,
@@ -163,3 +150,18 @@ VALUES
 ("Wafels"),
 ("Worst"),
 ("Sweets");
+
+ALTER TABLE `foodtruckdatabase`.`truckcategories`
+ADD CONSTRAINT fk_truckcategories_categoryid
+FOREIGN KEY (categoryid) REFERENCES category(idcategory);
+
+INSERT INTO `foodtruckdatabase`.`truckcategories`
+(`truckid`,`categoryid`) VALUES
+(1,1),
+(1,2),
+(2,3),
+(3,3),
+(4,4),
+(5,5),
+(5,6),
+(6,2);

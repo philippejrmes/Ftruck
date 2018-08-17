@@ -8,13 +8,13 @@
 CREATE INDEX `idk_fk_menu_truckid` 
 ON `foodtruckdatabase`.`menu` (`truckid` ASC);
 
-ALTER TABLE menu
+ALTER TABLE `foodtruckdatabase`.`menu
 ADD CONSTRAINT fk_menu_truckid
 FOREIGN KEY (truckid) REFERENCES truck(idtruck);
 
-ALTER TABLE truck DROP COLUMN menutext;
+ALTER TABLE `foodtruckdatabase`.`truck` DROP COLUMN menutext;
 
-ALTER TABLE truck DROP COLUMN menudocument;
+ALTER TABLE `foodtruckdatabase`.`truck` DROP COLUMN menudocument;
 
 INSERT INTO `foodtruckdatabase`.`menu`
 (`menutext`, `menudocument`, `dishes`, `truckid`) VALUES 
@@ -30,7 +30,7 @@ CREATE TABLE `foodtruckdatabase`.`statistic` (
 CREATE INDEX `idk_fk_statistic_truckid` 
 ON `foodtruckdatabase`.`statistic` (`truckid` ASC);
 
-ALTER TABLE statistic
+ALTER TABLE `foodtruckdatabase`.`statistic`
 ADD CONSTRAINT fk_statistic_truckid
 FOREIGN KEY (truckid) REFERENCES truck(idtruck);
 
@@ -49,12 +49,12 @@ INSERT INTO `foodtruckdatabase`.`user`
 VALUES
 ("jelle", "test", "test@test.com", "123", "hash");
 
-ALTER TABLE truck
+ALTER TABLE `foodtruckdatabase`.`truck`
 ADD COLUMN ownerid INT NOT NULL DEFAULT 1;
 
 CREATE INDEX `idk_fk_truck_ownerid`
 ON `foodtruckdatabase`.`truck` (`ownerid`);
 
-ALTER TABLE truck
+ALTER TABLE `foodtruckdatabase`.`truck`
 ADD CONSTRAINT fk_truck_ownerid
 FOREIGN KEY (ownerid) REFERENCES user(iduser);
