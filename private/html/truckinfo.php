@@ -1,12 +1,6 @@
 <?php
     include_once('private/config/config.php');
-    include_once('private/config/Mysql.php');
-    $truckName = $_GET['page2'];
-
-    $database = new Database();
-    $database->query("SELECT name, imageName, smallDescription FROM truck WHERE imageName = '$truckName'");
-    $rows = $database->single();
-   
+    include_once('private/service/truckinfo_service.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,14 +23,15 @@
 		?>
 		
 		<main>
-			<div id="truckIntroPhoto" style="background-image:url('public/images/<?php echo $rows['imageName']; ?>.jpg');">
-				<h1><?php echo ucfirst($_GET['page2']); ?></h1>
+			<?php $truck = getTruckInfo(); ?>
+			<div id="truckIntroPhoto" style="background-image:url('public/images/<?php echo $truck['imageName']; ?>');">
+				<h1><?php echo ucfirst($truck['name']); ?></h1>
 			</div>
 			<div id="content">
 			    <div id="splitScreenWrapper">
     				<div class="splitScreen">
     				    <div class="topTextBoxBlock">
-        				    <h2>FoodTruck <?php echo $rows['name']; ?></h2>
+        				    <h2>FoodTruck <?php echo $truck['name']; ?></h2>
         				    <div class="truckCategoryList">
         				        <a href="#">Pasta</a>
         				        <a href="#">Comfort Food</a>

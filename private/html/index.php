@@ -1,13 +1,6 @@
 <?php
     include_once('private/config/config.php');
-    include_once('private/config/Mysql.php');
-    
-    $database = new Database();
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY idtruck DESC LIMIT 10');
-    $rows = $database->resultset();
-    
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY RAND() LIMIT 10');
-    $rows2 = $database->resultset();
+	include_once('private/service/index_service.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,10 +52,10 @@
 				</div>
 				-->
 				<div class="foodTruckContainer">
-			    <a href="private/html/account.php">account test klik hier</a>
+			    <a href="account/">account test klik hier</a>
 				
 			    <?php
-			        foreach($rows AS $value)
+			        foreach(getTrucksLimited(10) AS $value)
 			        {
 			            echo '
     			            <a class="foodTruckBox">
@@ -72,7 +65,7 @@
         								<p>'.$value['smallDescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }
@@ -83,7 +76,7 @@
 				</div>
 				<div class="foodTruckContainer">
 				    <?php
-				    foreach($rows2 AS $value)
+				    foreach(getRandomTrucks() AS $value)
 			        {
 			            echo '
     			            <a class="foodTruckBox">
@@ -93,7 +86,7 @@
         								<p>'.$value['smallDescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }

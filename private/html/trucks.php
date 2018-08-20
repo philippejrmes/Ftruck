@@ -1,13 +1,6 @@
 <?php
     include_once('private/config/config.php');
-    include_once('private/config/Mysql.php');
-    
-    $database = new Database();
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY idtruck DESC LIMIT 10');
-    $rows = $database->resultset();
-    
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY RAND() LIMIT 10');
-    $rows2 = $database->resultset();
+	include_once('private/service/trucks_service.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,17 +51,17 @@
 				</div>
 				<div id="topContainerItems" class="foodTruckContainer">
 			    <?php
-			        foreach($rows AS $value)
+			        foreach(getTrucksLimited(10) AS $value)
 			        {
 			            echo '
-    			            <a href="trucks/'.$value["imageName"].'/" class="foodTruckBox">
+    			            <a href="trucks/'.$value["idtruck"].'/" class="foodTruckBox">
         						<div class="foodTruckBoxInfo">
         							<div class="foodTruckBoxInfoBlock">
         								<h2>'.$value["name"].'</h2>
-        								<p>'.$value['smallDescription'].'</p>
+        								<p>'.$value['smalldescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }
@@ -79,17 +72,17 @@
 				</div>
 				<div class="foodTruckContainer">
 				    <?php
-				    foreach($rows2 AS $value)
+				    foreach(getRandomTrucks() AS $value)
 			        {
 			            echo '
-    			            <a href="trucks/'.$value["imageName"].'/" class="foodTruckBox">
+    			            <a href="trucks/'.$value["idtruck"].'/" class="foodTruckBox">
         						<div class="foodTruckBoxInfo">
         							<div class="foodTruckBoxInfoBlock">
         								<h2>'.$value["name"].'</h2>
-        								<p>'.$value['smallDescription'].'</p>
+        								<p>'.$value['smalldescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }

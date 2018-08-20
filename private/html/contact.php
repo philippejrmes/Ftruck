@@ -1,3 +1,6 @@
+<?php
+include_once ('private/config/config.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>

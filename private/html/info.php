@@ -1,3 +1,6 @@
+<?php
+include_once ('private/config/config.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +18,7 @@
 	</head>
 	<body>
 		<?php
-			include_once('nav.php');
+		include_once ('nav.php');
 		?>
 
 		<main>
@@ -66,7 +69,7 @@
 		</main>
 
 		<?php
-			include_once('footer.php');
+		include_once ('footer.php');
 		?>
 
 		<script>
