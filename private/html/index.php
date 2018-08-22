@@ -52,8 +52,6 @@
 				</div>
 				-->
 				<div class="foodTruckContainer">
-			    <a href="account/">account test klik hier</a>
-				
 			    <?php
 			        foreach(getTrucksLimited(10) AS $value)
 			        {

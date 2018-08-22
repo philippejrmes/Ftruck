@@ -5,6 +5,7 @@
 				<a href="" id="logo"><img src="http://madlenedesign.com/theme/foodtruck/wp-content/uploads/2017/01/logo.png" /></a>
 				<a href="info/" <?php if(isset($_GET['page']) && $_GET['page'] == 'info'){ echo 'id="active"'; } ?>>INFO</a>
 				<a href="contact/" <?php if(isset($_GET['page']) && $_GET['page'] == 'contact'){ echo 'id="active"'; } ?>>CONTACT</a>
+				<a href="account/" <?php if(isset($_GET['page']) && $_GET['page'] == 'account'){ echo 'id="account"'; } ?>>ACCOUNT</a>
 			</div>
 			<div id="navMobile" class="innerNav">
 				<div id="navMobileTop">
