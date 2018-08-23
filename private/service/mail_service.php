@@ -1,19 +1,21 @@
 <?php 
-session_start();
-
 function sendVerificationMail($hash)
 {
     // Send registration confirmation link (verify.php)
     $to = $_SESSION['email'];
     $subject = 'Account Verification ( foodtruck.be )'; // fill in our website name
     $message_body = '
-        Hello ' . $_SESSION['first_name'] . ',
+        Hallo ' . $_SESSION['first_name'] . ',
 
-        Thank you for signing up!
+        Dank je voor jouw registratie!
 
-        Please click this link to activate your account:
+        Gelieve op onderstaande link te klikken om de account te activeren:
 
-        http://foodtruck.localhost.com/verify.php?email=' . $_SESSION['email'] . '&hash=' . $hash;
+        http://foodtruck.localhost.com/verify.php?email=' . $_SESSION['email'] . '&hash=' . $hash . '.
+        
+        Hartelijk dank,
+        
+        Het foodtruck team';
 
     mail($to, $subject, $message_body);
 }

@@ -1,20 +1,16 @@
 <?php
-    include_once('private/config/config.php');
-	include_once('private/service/index_service.php');
+	include_once ('private/config/config.php');
+	// dependency services
+	include_once ('private/service/index_service.php');
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>FoodTruck website - Home page</title>
-		<!--METADATA-->
-		<base href="<?php echo BASE_URL; ?>">
-	    <meta charset="UTF-8">
-	    <meta name="description" content="">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-	    <!--CSS-->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
-		<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+
+		<?php include_once('private/html/head.php'); ?>
+
+		<!-- custom page css -->
 		<link href="public/css/trucks.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>

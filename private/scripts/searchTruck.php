@@ -1,6 +1,6 @@
 <?php
-    include_once('../config/config.php');
-    include_once('../config/Mysql.php');
+    include_once ('../config/config.php');
+    include_once ('../config/Mysql.php');
     
     
     $searchTerm = $_POST['searchTerm'];

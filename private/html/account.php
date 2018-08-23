@@ -1,16 +1,17 @@
 <?php
 include_once ('private/config/config.php');
+include_once ('private/service/account_service.php');
+include_once ('private/config/debug.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
 	
     if (isset($_POST['login'])) { //user logging in
-
-        require 'login.php';
+		login();
     }
     
     elseif (isset($_POST['register'])) { //user registering
-        require 'private/service/register_service.php';
+        register();
     }
 }
 ?>
@@ -19,15 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <head>
 	<title>FoodTruck website - Algemene Informatie</title>
-	<!--METADATA-->
-	<base href="<?php echo BASE_URL; ?>">
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-	<!--CSS-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
-	<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+	
+	<?php include_once ('private/html/head.php'); ?>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<style>
@@ -268,6 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			<h1>Ook opzoek naar een Foodtruck voor op uw feest ?</h1>
 		</div>
 		<div id="content">
+			<!-- begin form -->
 			<div class="form">
 
 				<ul class="tab-group">
@@ -275,12 +270,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 					<li class="tab active"><a href="#login">Log In</a></li>
 				</ul>
 
+				<?php
+					if(isset($_SESSION) && isset($_SESSION['accountErrorMessage'])) {
+					echo "<p>".$_SESSION['accountErrorMessage']."</p>";
+					}
+				?>
+
 				<div class="tab-content">
 
 					<div id="login">
 						<h1>Welcome Back!</h1>
 
-						<form action="index.php" method="post" autocomplete="off">
+						<form action="account/" method="post" autocomplete="off">
 
 							<div class="field-wrap">
 								<label>Email Address<span class="req">*</span></label>
@@ -334,20 +335,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 				</div>
 				<!-- tab-content -->
-
-				<?php
-					if(isset($_SESSION) && isset($_SESSION['message'])) {
-					echo "<p>".$_SESSION['message']."</p>";
-					}
-				?>
-
-				<?php
-					if(isset($_SESSION) && isset($_SESSION['logged_in'])){
-						echo "<p>is logged in</p>";
-					}
-				?>
 			</div>
-			<!-- /form -->
+			<!-- end form -->
 		</div>
 	</main>
 
