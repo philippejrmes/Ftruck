@@ -3,7 +3,7 @@
 	<head>
 		<title>FoodTruck website - Algemene Informatie</title>
 		<!--METADATA-->
-		<base href="http://swiido.com/ftruck/">
+		<base href="<?php echo BASE_URL; ?>">
 	    <meta charset="UTF-8">
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
