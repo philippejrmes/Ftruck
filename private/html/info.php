@@ -74,17 +74,6 @@ include_once ('private/config/config.php');
 			$('.foodTruckBox').on('mouseout', function(){
 				$(this).find('.foodTruckBoxInfo').css('display', 'none');
 			});
-
-			$('#navBurger').on('click', function(){
-				console.log('ok');
-				if($('#dropdownMenu').hasClass('dropdownMenuActive'))
-				{
-					console.log('ok2');
-					$('#dropdownMenu').removeClass('dropdownMenuActive');
-				} else {
-					$('#dropdownMenu').addClass('dropdownMenuActive');
-				}
-			});
 		</script>
 	</body>
 </html>

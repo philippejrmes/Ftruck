@@ -1,5 +1,6 @@
 <?php
 // includes
+include_once ('private/config/config.php');
 include_once ('private/config/Mysql.php');
 include_once ('private/service/mail_service.php');
 session_start();  
@@ -44,7 +45,7 @@ function register()
 
             sendVerificationMail($hash);
 
-            header("location: profile/");
+            header("Location: " . $BASE_URL . "/profile/");
             exit;
         }
 
@@ -73,7 +74,7 @@ function login()
             $_SESSION['active'] = $user['active'];
             $_SESSION['logged_in'] = true;
 
-            header("location: profile/");
+            header("Location: " . $BASE_URL . "/profile/");
             exit;
         }
     }

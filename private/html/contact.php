@@ -1,5 +1,13 @@
 <?php
 include_once ('private/config/config.php');
+include_once ('private/service/contact_service.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
+    if (isset($_POST['contact'])) { //user logging in
+		echo "<script type='text/javascript'>alert(\"test test\");</script>";
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,12 +45,12 @@ include_once ('private/config/config.php');
 					<div class="splitScreen">
 						<h3>Lorem ipsum dolor sit amet</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In posuere efficitur ex, eget convallis metus mattis non. Donec pharetra, massa ac consequat tincidunt, felis ex molestie quam, ut tristique tortor justo at metus. Vivamus ornare diam lectus, id sodales sapien mollis at. Ut pretium lacus et ligula pulvinar elementum. </p>
-						<form>
-							<input type="text" placeholder="Naam" />
-							<input type="text" placeholder="Email" />
-							<input type="text" placeholder="Tel" />
-							<input type="text" placeholder="Bedrijf" />
-							<input type="submit" value="VERZENDEN" />
+						<form action="contact/" method="post" autocomplete="off"> 
+							<input type="text" name="naam" placeholder="Naam" />
+							<input type="text" name="email" placeholder="Email" />
+							<input type="text" name="tel" placeholder="Tel" />
+							<input type="text" name="bedrijf" placeholder="Bedrijf" />
+							<input type="submit" value="VERZENDEN" name="contact"/>
 						</form>
 					</div>
 					<div class="splitScreen">
@@ -67,16 +75,6 @@ include_once ('private/config/config.php');
 				$(this).find('.foodTruckBoxInfo').css('display', 'none');
 			});
 
-			$('#navBurger').on('click', function(){
-				console.log('ok');
-				if($('#dropdownMenu').hasClass('dropdownMenuActive'))
-				{
-					console.log('ok2');
-					$('#dropdownMenu').removeClass('dropdownMenuActive');
-				} else {
-					$('#dropdownMenu').addClass('dropdownMenuActive');
-				}
-			});
 		</script>
 		
         <script>

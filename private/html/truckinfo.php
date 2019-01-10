@@ -71,19 +71,6 @@
 
 		<?php
 			include_once ('footer.php');
-		?>
-		
-		<script>
-			$('#navBurger').on('click', function(){
-				console.log('ok');
-				if($('#dropdownMenu').hasClass('dropdownMenuActive'))
-				{
-					console.log('ok2');
-					$('#dropdownMenu').removeClass('dropdownMenuActive');
-				} else {
-					$('#dropdownMenu').addClass('dropdownMenuActive');
-				}
-			});
-		</script>
+		?>	
 	</body>
 </html>
