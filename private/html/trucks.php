@@ -96,17 +96,6 @@ include_once ('private/service/trucks_service.php');
 			$('body').on('mouseout', '.foodTruckBox', function(){
 				$(this).find('.foodTruckBoxInfo').css('display', 'none');
 			});
-
-			$('#navBurger').on('click', function(){
-				console.log('ok');
-				if($('#dropdownMenu').hasClass('dropdownMenuActive'))
-				{
-					console.log('ok2');
-					$('#dropdownMenu').removeClass('dropdownMenuActive');
-				} else {
-					$('#dropdownMenu').addClass('dropdownMenuActive');
-				}
-			});
 			
 			$('#advancedSearchBtn').on('click', function(){
 			    $('#advancedSearchBoxWrapper').css('display', 'block');
