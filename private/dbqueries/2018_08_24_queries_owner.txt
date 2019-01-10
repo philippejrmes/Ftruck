@@ -1,0 +1,17 @@
+﻿ALTER TABLE `foodtruckdatabase`.`truck` 
+DROP FOREIGN KEY `fk_truck_ownerid`;
+ALTER TABLE `foodtruckdatabase`.`truck` 
+ADD CONSTRAINT `fk_truck_ownerid`
+  FOREIGN KEY (`ownerid`)
+  REFERENCES `foodtruckdatabase`.`user` (`iduser`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+  
+  ALTER TABLE `foodtruckdatabase`.`truck` 
+DROP FOREIGN KEY `fk_truck_ownerid`;
+ALTER TABLE `foodtruckdatabase`.`truck` 
+ADD CONSTRAINT `fk_truck_ownerid`
+  FOREIGN KEY (`ownerid`)
+  REFERENCES `foodtruckdatabase`.`user` (`iduser`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

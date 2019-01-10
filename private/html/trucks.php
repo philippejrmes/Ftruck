@@ -1,27 +1,14 @@
 <?php
-    include_once('private/config/config.php');
-    include_once('private/config/Mysql.php');
-    
-    $database = new Database();
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY idtruck DESC LIMIT 10');
-    $rows = $database->resultset();
-    
-    $database->query('SELECT name, imageName, smallDescription FROM truck ORDER BY RAND() LIMIT 10');
-    $rows2 = $database->resultset();
+include_once ('private/config/config.php');
+include_once ('private/service/trucks_service.php');
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>FoodTruck website - Vind een FoodTruck</title>
-		<!--METADATA-->
-		<base href="<?php echo BASE_URL; ?>">
-	    <meta charset="UTF-8">
-	    <meta name="description" content="">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-	    <!--CSS-->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
-		<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+		
+		<?php include_once ('private/html/head.php'); ?>
+		
 		<link href="public/css/trucks.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
@@ -41,7 +28,7 @@
 	        </div>
 	    </div>
 		<?php
-			include_once('nav.php');
+			include_once ('nav.php');
 		?>
 
 		<main>
@@ -58,17 +45,17 @@
 				</div>
 				<div id="topContainerItems" class="foodTruckContainer">
 			    <?php
-			        foreach($rows AS $value)
+			        foreach(getTrucksLimited(10) AS $value)
 			        {
 			            echo '
-    			            <a href="trucks/'.$value["imageName"].'/" class="foodTruckBox">
+    			            <a href="trucks/'.$value["idtruck"].'/" class="foodTruckBox">
         						<div class="foodTruckBoxInfo">
         							<div class="foodTruckBoxInfoBlock">
         								<h2>'.$value["name"].'</h2>
-        								<p>'.$value['smallDescription'].'</p>
+        								<p>'.$value['smalldescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }
@@ -79,17 +66,17 @@
 				</div>
 				<div class="foodTruckContainer">
 				    <?php
-				    foreach($rows2 AS $value)
+				    foreach(getRandomTrucks() AS $value)
 			        {
 			            echo '
-    			            <a href="trucks/'.$value["imageName"].'/" class="foodTruckBox">
+    			            <a href="trucks/'.$value["idtruck"].'/" class="foodTruckBox">
         						<div class="foodTruckBoxInfo">
         							<div class="foodTruckBoxInfoBlock">
         								<h2>'.$value["name"].'</h2>
-        								<p>'.$value['smallDescription'].'</p>
+        								<p>'.$value['smalldescription'].'</p>
         							</div>
         						</div>
-    						    <img src="public/images/'.$value['imageName'].'.jpg" />
+    						    <img src="public/images/'.$value['imageName'].'" />
     					    </a>
 					    ';
 			        }
@@ -99,7 +86,7 @@
 		</main>
 
 		<?php
-			include_once('footer.php');
+			include_once ('footer.php');
 		?>
 
 		<script>

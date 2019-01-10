@@ -1,42 +1,31 @@
 <?php
-    include_once('private/config/config.php');
-    include_once('private/config/Mysql.php');
-    $truckName = $_GET['page2'];
-
-    $database = new Database();
-    $database->query("SELECT name, imageName, smallDescription FROM truck WHERE imageName = '$truckName'");
-    $rows = $database->single();
-   
+	include_once ('private/config/config.php');
+    include_once ('private/service/truckinfo_service.php');
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>FoodTruck website - More info about the current truck</title>
-		<!--METADATA-->
-		<base href="<?php echo BASE_URL; ?>">
-	    <meta charset="UTF-8">
-	    <meta name="description" content="">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-	    <!--CSS-->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
-		<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+
+		<? include_once ('private/html/head.php'); ?>
+
 		<link href="public/css/trucksInfo.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<?php
-			include_once('nav.php');
+			include_once ('nav.php');
 		?>
 		
 		<main>
-			<div id="truckIntroPhoto" style="background-image:url('public/images/<?php echo $rows['imageName']; ?>.jpg');">
-				<h1><?php echo ucfirst($_GET['page2']); ?></h1>
+			<?php $truck = getTruckInfo(); ?>
+			<div id="truckIntroPhoto" style="background-image:url('public/images/<?php echo $truck['imageName']; ?>');">
+				<h1><?php echo ucfirst($truck['name']); ?></h1>
 			</div>
 			<div id="content">
 			    <div id="splitScreenWrapper">
     				<div class="splitScreen">
     				    <div class="topTextBoxBlock">
-        				    <h2>FoodTruck <?php echo $rows['name']; ?></h2>
+        				    <h2>FoodTruck <?php echo $truck['name']; ?></h2>
         				    <div class="truckCategoryList">
         				        <a href="#">Pasta</a>
         				        <a href="#">Comfort Food</a>
@@ -81,7 +70,7 @@
 		</main>
 
 		<?php
-			include_once('footer.php');
+			include_once ('footer.php');
 		?>
 		
 		<script>
